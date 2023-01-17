@@ -23,7 +23,7 @@ void	encode(int pid, char *message)
 	i = 8;
 	count = -1;
 	len = ft_strlen(message);
-	while (++count <= len)
+	while (++count < len)
 	{
 		c = message[count];
 		while (--i >= 0)

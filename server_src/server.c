@@ -20,21 +20,47 @@ static void	listen_for_key(int sig)
 
 static void	signal_handler(int sig)
 {
-	static int	len = -1;
-	static char	bytes[8];
-	char		c;
+	static int		index = 0;
+	static char		bytes[8];
+	static int		i = -1;
+	static t_msg	msg;
+	char			c;
 
-	if (++len < 8)
+	if (g_state == 0)
+	{
+		msg.index = 0;
+	}
+	if (++i < 8)
 	{
 		if (sig == 30)
-			bytes[len] = '0';
+			bytes[i] = '0';
 		if (sig == 31)
-			bytes[len] = '1';
-		if (len == 7)
+			bytes[i] = '1';
+		if (i == 7)
 		{
 			c = translate_bytes(bytes);
-			write(1, &c, 1);
-			len = -1;
+			if (msg.index < 10)
+			{
+				msg.len[msg.index] = c;
+				ft_printf("len: %c\n", msg.len[msg.index]);
+				msg.index++;
+				if (msg.index == 9)
+					msg.message = malloc(sizeof(char) * ft_atoi(msg.len) + 1);
+			}
+			else
+			{
+				msg.message[index] = c;
+				index++;
+				if (index == ft_atoi(msg.len))
+				{
+					msg.message[index] = '\0';
+					ft_printf("%s\n", msg.message);
+					free(msg.message);
+					msg.index = 0;
+					index = 0;
+				}
+			}
+			i = -1;
 		}
 	}
 }
