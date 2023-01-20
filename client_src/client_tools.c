@@ -29,7 +29,7 @@ void	encode(int pid, char *message)
 		while (--i >= 0)
 		{
 			send(pid, i, c);
-			usleep(10000);
+			usleep(1000);
 		}
 		i = 8;
 	}

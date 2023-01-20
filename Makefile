@@ -25,7 +25,7 @@ $(SERVER):
 	cc -o $(SERVER) $(SRC_SERVER) $(FLAGS) $(SERVER_INCLUDES) -L. -lft
 
 $(CLIENT):
-	cc -o $(CLIENT) $(SRC_CLIENT) $(FLAGS) $(CLIENT_INCLUDES) -L. -lft
+	cc -g -o $(CLIENT) $(SRC_CLIENT) $(FLAGS) $(CLIENT_INCLUDES) -L. -lft
 	
 clean:
 	cd libft && $(MAKE) clean

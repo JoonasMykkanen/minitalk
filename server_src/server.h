@@ -11,8 +11,11 @@
 typedef struct s_message
 {
 	char	*message;
+	char	bytes[8];
 	char	len[10];
+	char	pid[10];
 	int		index;
+	char	c;
 }			t_msg;
 
 char	translate_bytes(char *bytes);

@@ -1,7 +1,23 @@
 
 #include "client.h"
 
-void	send_key(int pid)
+static void	send_len(int pid, char *message)
+{
+	int		i;
+	char	*len;
+
+	i = 0;
+	len = ft_itoa(ft_strlen(message));
+	i = 11 - ft_strlen(len);
+	while (--i > 0)
+	{
+		encode(pid, "0");
+	}
+	encode(pid, len);
+	free(len);
+}
+
+static void	send_key(int pid)
 {
 	int i;
 
@@ -12,7 +28,6 @@ void	send_key(int pid)
 		usleep(1000);
 	}
 }
-
 
 int	main(int argc, char **argv)
 {
@@ -29,6 +44,7 @@ int	main(int argc, char **argv)
 	if (!message)
 		return (0);
 	send_key(pid);
+	send_len(pid, message);
 	encode(pid, message);
 	free(message);
 	return (0);
