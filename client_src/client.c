@@ -8,7 +8,7 @@ static void	send_len(int pid, char *message)
 
 	i = 0;
 	len = ft_itoa(ft_strlen(message));
-	i = 11 - ft_strlen(len);
+	i = 10 - ft_strlen(len);
 	while (--i > 0)
 	{
 		encode(pid, "0");
@@ -31,8 +31,8 @@ static void	send_key(int pid)
 
 int	main(int argc, char **argv)
 {
-	int		pid;
 	char	*message;
+	int		pid;
 
 	if (check_input(argc, argv) == -1)
 	{

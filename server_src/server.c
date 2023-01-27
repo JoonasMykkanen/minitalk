@@ -15,8 +15,6 @@ static void	listen_for_key(int sig)
 		g_state = 1;
 }
 
-
-
 static void	signal_handler(int sig)
 {
 	static int		i = -1;
@@ -35,10 +33,11 @@ static void	signal_handler(int sig)
 			msg.c = translate_bytes(msg.bytes);
 			if (++msg.index < 10)
 			{
-				msg.len[msg.index] = msg.c;
+				msg.len[msg.index] = ft_atoi(&msg.c);
 				if (msg.index == 9)
 				{
-					msg.message = malloc(sizeof(char) * ft_atoi(msg.len) + 1);
+					msg.size = calc_size(msg);
+					msg.message = malloc(sizeof(char) * msg.size + 1);
 					if (!msg.message)
 						return ;
 				}
@@ -46,15 +45,14 @@ static void	signal_handler(int sig)
 			else
 			{
 				msg.message[msg.index - 10] = msg.c;
-				if ((msg.index - 10) == (ft_atoi(msg.len) - 1))
+				if ((msg.index - 10) == (msg.size - 1))
 				{
-					msg.message[msg.index] = '\0';
+					msg.message[msg.index - 10] = msg.c;
+					msg.index++;
+					msg.message[msg.index - 10] = '\0';
 					ft_printf("%s\n", msg.message);
-					free(msg.message);
-					msg.index = 0;
-					g_state = 0;
+					reset_server(&msg, &g_state);
 				}
-				msg.index++;
 			}
 			i = -1;
 		}
