@@ -20,7 +20,7 @@ typedef struct s_message
 }			t_msg;
 
 void	reset_server(t_msg *msg, int *g_state);
-void	init(t_msg *msg, int g_state);
+void	init(t_msg *msg, int *g_state);
 char	translate_bytes(char *bytes);
 int		calc_size(t_msg msg);
 

@@ -3,18 +3,6 @@
 
 int	g_state;
 
-static void	listen_for_key(int sig)
-{
-	static int	count = 0;
-
-	if (sig == 30)
-		count++;
-	else
-		count = 0;
-	if (count >= 100)
-		g_state = 1;
-}
-
 static void	print_message(t_msg *msg, int *g_state)
 {
 	msg->message[msg->index - 10] = msg->c;
@@ -33,11 +21,23 @@ static void save_signal(t_msg *msg, int sig)
 		msg->bytes[msg->i] = '1';
 }
 
+static void	listen_for_key(int sig)
+{
+	static int	count = 0;
+
+	if (sig == 30)
+		count++;
+	else
+		count = 0;
+	if (count >= 100)
+		g_state = 1;
+}
+
 static void	signal_handler(int sig)
 {
 	static t_msg	msg;
 
-	init(&msg, g_state);
+	init(&msg, &g_state);
 	save_signal(&msg, sig);
 	if (msg.i == 7)
 	{
@@ -55,6 +55,7 @@ static void	signal_handler(int sig)
 		else
 		{
 			msg.message[msg.index - 10] = msg.c;
+			ft_printf("%d and %d \n", msg.index - 10, calc_size(msg) - 1);
 			if ((msg.index - 10) == (calc_size(msg) - 1))
 				print_message(&msg, &g_state);
 		}

@@ -42,12 +42,12 @@ void	reset_server(t_msg *msg, int *g_state)
 	*g_state = 0;
 }
 
-void	init(t_msg *msg, int g_state)
+void	init(t_msg *msg, int *g_state)
 {
-	if (g_state == 1)
+	if (*g_state == 1)
 	{
 		msg->i = -1;
-		g_state = 2;
+		*g_state = 2;
 		msg->index = 0;
 	}
 }

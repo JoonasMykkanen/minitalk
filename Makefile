@@ -8,9 +8,9 @@ SRC_SERVER = server_src/server.c server_src/server_tools.c
 
 SRC_CLIENT = client_src/client.c client_src/client_tools.c
 
-SERVER_INCLUDES = -Iserver_src -Ilibft
+SERVER_INCLUDES = -Iserver_src -Ilibft -L. -lft
 
-CLIENT_INCLUDES = -Iclient_src -Ilibft
+CLIENT_INCLUDES = -Iclient_src -Ilibft -L. -lft
 
 FLAGS = -Wall -Werror -Wextra
 
@@ -22,10 +22,10 @@ $(LIBFT):
 	rm -f libft/libft.a
 
 $(SERVER):
-	cc -o $(SERVER) $(SRC_SERVER) $(FLAGS) $(SERVER_INCLUDES) -L. -lft
+	cc -o $(SERVER) $(SRC_SERVER) $(FLAGS) $(SERVER_INCLUDES) 
 
 $(CLIENT):
-	cc -g -o $(CLIENT) $(SRC_CLIENT) $(FLAGS) $(CLIENT_INCLUDES) -L. -lft
+	cc -g -o $(CLIENT) $(SRC_CLIENT) $(FLAGS) $(CLIENT_INCLUDES) 
 	
 clean:
 	cd libft && $(MAKE) clean
