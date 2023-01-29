@@ -19,7 +19,7 @@ static void	send_len(int pid, char *message)
 
 static void	send_key(int pid)
 {
-	int i;
+	int	i;
 
 	i = 100;
 	while (--i >= 0)

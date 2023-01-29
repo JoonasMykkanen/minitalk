@@ -42,7 +42,7 @@ int	check_input(int argc, char **argv)
 		return (-1);
 	if (ft_atoi(argv[1]) == 0)
 		return (-1);
-	if(ft_strlen(argv[2]) == 0)
+	if (ft_strlen(argv[2]) == 0)
 		return (-1);
 	else
 		return (0);

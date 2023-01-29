@@ -21,7 +21,7 @@ char	translate_bytes(char *bytes)
 int	calc_size(t_msg msg)
 {
 	int	i;
-	int sum;
+	int	sum;
 
 	i = -1;
 	sum = 0;

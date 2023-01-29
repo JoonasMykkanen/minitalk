@@ -12,7 +12,7 @@ static void	print_message(t_msg *msg, int *g_state)
 	reset_server(msg, g_state);
 }
 
-static void save_signal(t_msg *msg, int sig)
+static void	save_signal(t_msg *msg, int sig)
 {
 	msg->i++;
 	if (sig == 30)
@@ -55,7 +55,6 @@ static void	signal_handler(int sig)
 		else
 		{
 			msg.message[msg.index - 10] = msg.c;
-			ft_printf("%d and %d \n", msg.index - 10, calc_size(msg) - 1);
 			if ((msg.index - 10) == (calc_size(msg) - 1))
 				print_message(&msg, &g_state);
 		}
@@ -65,11 +64,11 @@ static void	signal_handler(int sig)
 
 int	main(void)
 {
-	int pid;
+	int	pid;
 
 	g_state = 0;
 	pid = getpid();
-	ft_printf("pid: %d\n",pid);
+	ft_printf("pid: %d\n", pid);
 	while (42)
 	{
 		if (g_state == 0)

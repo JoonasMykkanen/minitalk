@@ -1,5 +1,4 @@
 
-
 #ifndef CLIENT_H
 # define CLIENT_H
 
@@ -12,4 +11,3 @@ void	encode(int pid, char *message);
 int		check_input(int argc, char **argv);
 
 #endif
-
