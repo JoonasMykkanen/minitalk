@@ -38,10 +38,11 @@ static void	listen_for_key(int sig)
 
 	if (sig == 30)
 		count++;
-	else
-		count = 0;
 	if (count >= 100)
+	{
+		count = 0;
 		g_state = 1;
+	}
 }
 
 static void	signal_handler(int sig)
