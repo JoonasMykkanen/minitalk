@@ -38,6 +38,8 @@ int	calc_size(t_msg msg)
 	sum = 0;
 	while (++i < 10)
 	{
+		if (msg.len[i] != 0)
+			sum *= 10;
 		sum = sum + msg.len[i];
 	}
 	return (sum);
